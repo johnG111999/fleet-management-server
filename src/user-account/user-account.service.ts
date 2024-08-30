@@ -44,4 +44,18 @@ export class UserAccountService {
     }
     return undefined;
   }
+
+  public async accountLookup(email:string){
+    const {singleResult} =  await this._databaseService.executeStoredProcedure('[registrations].[SpAccountLookup]',[
+      {name:'emailAddress', type:mssql.TYPES.NVarChar, value:email}
+    ]);
+    return singleResult;
+  }
+
+  public async getAccount(uid:string){
+    const {singleResult} = await this._databaseService.executeStoredProcedure('[registrations].[SpAccount_Get]',[
+      {name:'uid', type:mssql.TYPES.NVarChar, value:uid}
+    ]);
+    return singleResult;
+  }
 }
