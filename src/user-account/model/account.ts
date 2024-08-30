@@ -5,4 +5,5 @@ export class Account {
   displayName: string;
   photoUrl?: string;
   password?: string;
+  membershipLevel?:number;
 }
